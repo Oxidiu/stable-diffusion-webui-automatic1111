@@ -1,0 +1,52 @@
+All the commands:
+
+--prompt [prompt] - (this is the command for the prompt)
+
+--H 448 --W 448 -n_samples 1
+
+--outdir [dir] - (this is the command for save directory)
+--ddim_steps [steps] - (this is the command for the amount of steps)
+--plms - (this is the command to change the samplet to plms)
+--n_iter [number] (how many times to generate images)
+--W [width] - (this is the command for setting image width)
+--H [height] - (this is the command for setting the image height)
+--n_samples - (number of images to generate at the same time)
+--scale [scale] - (how close image should match the prompt)
+--from-file - (this is the command to load prompts from a file)
+--seed - (this is the command for setting the seed)
+
+
+
+--RUNNING ON 4GB (And under!)--
+These parameters are also useful for regular users who want to make larger images or batch sizes!
+It is possible to drastically reduce VRAM usage with some modifications:
+
+Step 1: Edit webui-user.bat
+Step 2: After COMMANDLINE_ARGS= , enter your desired parameters:
+Example: COMMANDLINE_ARGS=--medvram
+If you have 4GB-6GB VRAM
+use --medvram.
+If you have 2GB VRAM,
+use --lowvram
+If you are getting 'Out of memory' errors on either of these, add --always-batch-cond-uncond to the other arguments
+
+NOTES:
+
+If you get a green/black screen instead of generated pictures, you have a card that doesn't support half precision floating point numbers (known problem on 16xx cards):
+You must use --precision full --no-half in addition to other flags, and the model will take much more space in VRAM
+If you are using a .vae file, you must also add --no-half-vae
+Make sure to disable hardware acceleration in your browser and close anything which might be occupying VRAM if you are getting out-of-memory errors
+
+
+
+OPTIMIZED STABLE DIFFUSION WITH USER INTERFACE FOR LOW RAM GPU RETARD GUIDE
+
+THIS GUIDE IS OUTDATED, USE THIS ONE INSTEAD
+https://rentry.org/voldy
+REMEMBER TO READ THE "RUNNING ON 4GB OR UNDER" SECTION
+
+If you are using a 1660ti 6GB RAM this is what you need to add on the webui-user.bat line (following the guide above instructions):
+COMMANDLINE_ARGS=--medvram --precision full --no-half
+
+If you are using a 1650 4GB RAM try the code above, if you get 'Out of memory' error, try this instead:
+COMMANDLINE_ARGS=--lowvram --precision full --no-half
